@@ -1,0 +1,254 @@
+/*Navbar*/
+
+.navbar{
+    background-color: #000;
+    display: flex;
+    /*justify-content: space-between;*/
+}
+
+.navbar-item{
+    color: #ffffff;
+    text-decoration: none;
+    padding: 15px;
+}
+
+.logoutButton {
+    margin: 5px 10px 5px 0;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+.logoutButton a{
+    text-decoration: none;
+    color: black;
+}
+
+.bordered-active {
+    border-bottom: 3px solid #fff;
+}
+
+.logo{
+    width: 4%;
+    margin: 15px;
+}
+
+
+/*Home*/
+
+.adminicon {
+    width: 15rem;
+    margin-top: 120px;
+    border-radius: 115px;
+}
+
+.homeButton {
+    align-items: center;
+    background-color: black;
+    width: 18%;
+    padding: 15px;
+    margin-top: 55px;
+    font-size: large;
+    border-radius: 15px;
+    border: none;
+
+}
+.homeButton a{
+    text-decoration: none;
+    color: white;
+}
+.home{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Sign In*/
+
+/*Create Account*/
+body{ height: 100%;}
+.createAccount_header{
+    margin-top: 40px;
+    text-align: center;
+}
+
+.signUp_wrapper {
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.colOne{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 75px;
+}
+
+.colTwo{
+    display: flex;
+    flex-direction: column;
+    margin:  20px 75px;
+}
+
+.star{
+    color: #ff0000;
+}
+.signUp_textBox{
+    margin: 20px 0;
+    padding: 8px;
+    border-radius: 15px;
+    border: lightgray 2px solid;
+    width: 150%;
+
+
+}
+
+.below_textBox{
+    text-align: center;
+}
+.createAccount_btn{
+    border-radius: 20px;
+    border: none;
+    padding: 15px;
+    margin: 15px;
+    background-color: #000;
+    width: 15%;
+    font-size: 16px;
+}
+.createAccount_btn a{
+    text-decoration: none;
+    color: white;
+}
+
+/*Admin Account*/
+
+/*Menu*/
+.menuContainer{
+    text-align: center;
+}
+
+.field {
+    display: flex;
+    flex: 0 0 100%;
+    width: 180%;
+}
+.column.is-flex {
+    display: flex;
+    font-weight: bold;
+    font-size: 24px;
+    color: rgba(0, 0, 2, 0.76);
+    width: 100%;
+    margin: 9px;
+    box-shadow: 2px 2px 8px 0px rgba(0, 5, 25, .3);
+}
+
+/* item styling */
+.item_s {
+    display: flex;
+    color: grey;
+    flex-direction: column;
+    column-gap: 25px;
+    font-weight: bolder;
+    height: 75px;
+    box-shadow: 1px 2px 10px 0 rgba(0, 5, 25, .3);
+    margin: 9px;
+    padding-left: 10px;
+    padding-top: 10px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.pickDel_btn{
+    margin-right: 15px;
+    border-radius: 15px;
+    padding: 15px;
+    border: lightgray 2px solid;
+    box-shadow: 1px 2px 10px 0 rgba(0, 5, 25, .3);
+}
+
+
+.item_container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+h5 {
+    display: flex;
+    color: rgb(10, 10, 10);
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+.Collapsible__contentInner {
+    display: flex;
+    flex: 0 0 100%;
+    width: 180%;
+
+}
+
+.Collapsible__contentOuter {
+    display: flex;
+    flex-wrap: wrap;
+    width: 180%;
+}
+/*Time Section*/
+.timeSection{
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+
+}
+.addTime{
+    margin: 20px;
+}
+.addTime_textbox{
+    border: lightgray 2px solid;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 20px 10px 20px 0;
+    text-align: center;
+}
+.timeButton{
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #000000;
+}
+.editItem{
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    background-color: #ff0000;
+    margin: 5px;
+    font-weight: bold;
+}
+
+.timeButton a{
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+.selectTime{
+    margin: 20px;
+}
+.selectBody{
+    border: lightgray 2px solid;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 20px 0;
+}
