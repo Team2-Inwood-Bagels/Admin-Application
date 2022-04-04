@@ -1,5 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React, { Component, useEffect, useState} from 'react'
 import '../style/style.css'
+import { GoPencil } from "react-icons/go";
+import { GoTrashcan } from "react-icons/go";
 import {db} from "../firebase";
 
 function Items() {
@@ -26,8 +28,11 @@ function Items() {
                 {
                     items.map(((item, ind) =>
                             <div className="item_s" key={ind}>
-                                <h5 className="item_name">{item.item_name} Price: {item.item_price}
-                                    <button className="editItem">Edit Menu Item</button>
+                                <h5 className="item_name">{item.item_name} Price: ${item.item_price}
+                                    <div className="editdltbtns">
+                                        <button className="editItem">Edit Menu Item <GoPencil/></button>
+                                        <button className="deleteItem">Delete Menu Item<GoTrashcan/></button>
+                                    </div>                                    
                                 </h5>
                                 <h6 className="item_desc">{item.item_desc}</h6>
                             </div>
