@@ -302,3 +302,92 @@ h5 {
     padding: 10px;
     margin: 20px 0;
 }
+.menuButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.collapse-button{
+    display: block;
+    width: 80%;
+    padding: 12px;
+    margin: 15px;
+    border: none;
+}
+
+.collapse-content.collapsed {
+    display: none;
+}
+
+.collapsed-content.expanded {
+    display: inline-block;
+
+
+}
+.collapse-content{
+    /*background-color:rgba(0, 21, 20, 35%);*/
+    overflow: hidden;
+    width: 50%;
+    margin: 0 auto;
+
+}
+
+.itemCard{
+    width: 80%;
+    height: 200px;
+    margin: 50px auto;
+    text-align: center;
+    padding: 20px;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.addNewItems{
+
+}
+
+/* New menu style*/
+
+.customCard{
+    width: 400px;
+    height: 290px;
+    background-color: #000;
+    color: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    margin: 15px 15px;
+    position: relative;
+    bottom: 25px;
+
+}
+
+.meals_container{
+    height: 100vh;
+    top: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+@media screen
+and (min-width: 1200px)
+and (max-width: 1600px) {
+    .meals_container{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        /*overflow-y: auto;*/
+        bottom: 90px;
+    }
+}

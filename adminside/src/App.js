@@ -12,6 +12,7 @@ import Orders from "./components/Orders";
 import Inventory from "./components/Inventory";
 
 
+
 function App() {
   return (
     <div className="App">
@@ -25,6 +26,7 @@ function App() {
                 <Route exact path={"/menu"} component={Menu}/>
                 <Route exact path={"/orders"} component={Orders}/>
                 <Route exact path={"/inventory"} component={Inventory}/>
+
             </Switch>
         </Router>
     </div>
