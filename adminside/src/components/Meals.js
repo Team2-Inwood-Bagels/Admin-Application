@@ -14,6 +14,8 @@ import {
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import {ToastContainer, toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -28,6 +30,11 @@ function Meals() {
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
     const [name, setName] = useState("");
+    const addNotify = () => toast.success("Item successfully added to menu.", {
+        icon: "🥯"
+    })
+
+    const deleteNotify = () => toast.warn("Item successfully deleted from menu.")
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -79,7 +86,6 @@ function Meals() {
             name: name,
         });
         setName("");
-
     }
     const breakSandwichSubmit = (e) => {
         e.preventDefault();
@@ -145,7 +151,12 @@ function Meals() {
                            {/*    value={price}*/}
                            {/*    onChange={(e) => setPrice(e.target.value)}*/}
                            {/*/>*/}
-                           <button onClick={bagelsSubmit}>Add new a new bagel</button>
+                           <button className={"addButton"} onClick={(event) => {
+                               bagelsSubmit(event);
+                               addNotify()
+                           }}>Add new a new bagel</button>
+                           <ToastContainer/>
+
                        </div>
                    </TabPanel>
 
@@ -169,7 +180,11 @@ function Meals() {
                             {/*    value={price}*/}
                             {/*    onChange={(e) => setPrice(e.target.value)}*/}
                             {/*/>*/}
-                            <button onClick={creamSubmit}>Add a new Cream Cheese</button>
+                            <button className={"addButton"} onClick={(event) => {
+                                creamSubmit(event);
+                                addNotify();
+                            }}>Add a new Cream Cheese</button>
+                            <ToastContainer/>
                         </div>
                     </TabPanel>
 
@@ -193,7 +208,11 @@ function Meals() {
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
                             />
-                            <button onClick={breakSandwichSubmit}>Add new Breakfast Sandwich</button>
+                            <button className={"addButton"} onClick={(event) => {
+                                breakSandwichSubmit(event)
+                                addNotify();
+                            }}>Add new Breakfast Sandwich</button>
+                            <ToastContainer/>
                         </div>
                     </TabPanel>
 
@@ -205,7 +224,7 @@ function Meals() {
                                         <p>{data.Name}</p>
                                         <p>{data.Description}</p>
                                         <p>Cost: {data.Price}</p>
-                                        <button onClick={() => {
+                                        <button className={"deleteButton"} onClick={() => {
                                             handleClickOpen()
                                             setSelectedItem(id)
                                             // db.collection("Breakfast Sandwiches").doc(id).delete()
@@ -222,7 +241,7 @@ function Meals() {
                                         <p>{data.name}</p>
                                         {/*<p>{data.Description}</p>*/}
                                         {/*<p>Cost: {data.Price}</p>*/}
-                                        <button onClick={() => {
+                                        <button className={"deleteButton"} onClick={() => {
                                             handleClickOpen()
                                             setSelectedItem(id)
                                             // db.collection("Breakfast Sandwiches").doc(id).delete()
@@ -239,7 +258,7 @@ function Meals() {
                                         <p>{data.name}</p>
                                         {/*<p>{data.Description}</p>*/}
                                         {/*<p>Cost: {data.Price}</p>*/}
-                                        <button onClick={() => {
+                                        <button className={"deleteButton"} onClick={() => {
                                             handleClickOpen()
                                             setSelectedItem(id)
                                             // db.collection("Breakfast Sandwiches").doc(id).delete()
@@ -275,7 +294,10 @@ function Meals() {
                             db.collection("Breakfast Sandwiches").doc(selectedItem).delete()
                             db.collection("Bagels").doc(selectedItem).delete()
                             db.collection("Cream Cheese").doc(selectedItem).delete()
+                            deleteNotify()
+
                         }}
+
                         style={{color: "red", fontWeight: "bold"}}
                         autoFocus
                     >

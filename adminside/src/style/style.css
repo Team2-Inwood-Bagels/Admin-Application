@@ -378,6 +378,16 @@ h5 {
     position: relative;
 }
 
+.addButton, .deleteButton{
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
+
+.deleteButton{
+    margin-top: 10px;
+}
+
 @media screen
 and (min-width: 1200px)
 and (max-width: 1600px) {
