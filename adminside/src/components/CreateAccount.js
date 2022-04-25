@@ -6,6 +6,9 @@ import {
     registerWithEmailAndPassword,
 } from '../firebase'
 import "../style/style.css"
+import {FormControl, InputLabel, MenuItem, Select, TextField} from "@material-ui/core";
+import { spacing } from '@mui/system';
+
 
 
 function CreateAccount() {
@@ -15,12 +18,16 @@ function CreateAccount() {
     const [checkPassword, setCheckPassword] = useState("")
     const [name, setName] = useState("")
     const [admin, loading, error] = useAuthState(auth)
+    const [role, setRole] = useState("");
     const history = useHistory()
+
 
     const register = () => {
         if (!name) alert("Please enter name")
         if (password !== checkPassword) alert("password do not match")
-        registerWithEmailAndPassword(name, email, password).then(r => console.log(admin))
+        if(name && password === checkPassword){
+            registerWithEmailAndPassword(name, email, role, password).then(r => console.log(admin))
+        }
     };
 
     // useEffect(() => {
@@ -32,58 +39,84 @@ function CreateAccount() {
 
         <div className={"createAccountDiv"}>
             <h1 className={"createAccount_header"}>Create Account</h1>
-            <div className={"signUp_wrapper"}>
-                <div className={"row"}>
-                    <div className={"column"}>
-                        <div className={"colOne"}>
-                            <p>Enter Employee Name <span className={"star"}>*</span></p>
-                            <input
-                                type={"text"}
-                                className={"signUp_textBox"}
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder="Full Name"
-                            />
+            <div className={"createAccount_fields"}>
+               <div className={"createAccount_divTF"} >
+                   <TextField
+                      style={{margin: "20px"}}
+                       type={"text"}
+                       className={"createAccount_textField"}
+                       label={"Enter Employee Name"}
+                       onChange={(e) => {setName(e.target.value)}}
+                       value={name}
+                       placeholder={name}
+                       variant={"outlined"}
+                       required={true}
+                       helperText={"Required field"}
+                   />
 
-                            <p>E-mail Address <span className={"star"}>*</span></p>
-                            <input
-                                type="email"
-                                className={"signUp_textBox"}
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="Enter Email"
-                            />
-                        </div>
-                    </div>
-                    <div className={"colTwo"}>
-                        <p>Enter password <span className={"star"}>*</span></p>
-                        <input
-                            type="password"
-                            className={"signUp_textBox"}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Password"
-                        />
 
-                        <p>Re-Enter password <span>*</span></p>
-                        <input
-                            type="password"
-                            className={"signUp_textBox"}
-                            value={checkPassword}
-                            onChange={(e) => setCheckPassword(e.target.value)}
-                            placeholder="Re-enter Password"
-                        />
-                    </div>
+                   <TextField
+                       style={{margin: "20px"}}
+                       type={"text"}
+                       className={"createAccount_textField"}
+                       label={"Enter Email Address"}
+                       onChange={(e) => {setEmail(e.target.value)}}
+                       placeholder={"e.g. john@gmail.com"}
+                       variant={"outlined"}
+                       required={true}
+                       helperText={"Required field"}
+                   />
+               </div>
+                <div className={"createAccount_divTF"}>
+                    <TextField
+                        style={{margin: "20px"}}
+                        type={"password"}
+                        className={"createAccount_textField"}
+                        label={"Enter Password"}
+                        onChange={(e) => {setPassword(e.target.value)}}
+                        value={password}
+                        placeholder={"Minimum of 8 characters"}
+                        variant={"outlined"}
+                        required={true}
+                        helperText={"Required field"}
+                    />
+
+                   <TextField
+                       style={{margin: "20px"}}
+                       type={"password"}
+                       className={"createAccount_textField"}
+                       label={"Confirm Password"}
+                       onChange={(e) => {setCheckPassword(e.target.value)}}
+                       value={checkPassword}
+                       placeholder={"Minimum of 8 characters"}
+                       variant={"outlined"}
+                       required={true}
+                       helperText={"Required field"}
+                   />
+               </div>
+                <div>
+                 <FormControl className={"selectRole"}>
+                     <InputLabel>Select Employee Role</InputLabel>
+                     <Select
+                         label={"Employee Role"}
+                         value={role}
+                         placeholder={"Select Employee Role"}
+                         onChange={(e) => {setRole(e.target.value)}}
+                         variant={"outlined"}
+                     >
+                         <MenuItem value={"Business Owner"}>Business Owner</MenuItem>
+                         <MenuItem value={"Manager"}>Manager</MenuItem>
+                         <MenuItem value={"Employee"}>Employee</MenuItem>
+                     </Select>
+                 </FormControl>
                 </div>
-            </div>
-            <div className={"below_textBox"}>
-                <button
-                    className={"createAccount_btn"}
-                    onClick={register}
-                >
-                    <Link to={"/account"}>Create Account</Link>
-                </button>
 
+                    <button
+                        className={"createAccount_btn"}
+                        onClick={register}
+                    >
+                        <Link to={"/account"}>Create Account</Link>
+                    </button>
                 <p>Already have an account? <Link to={"/signin"}>Sign in here</Link></p>
             </div>
         </div>

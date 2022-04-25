@@ -4,6 +4,7 @@ import {addTime, db} from "../firebase"
 import Collapsible from 'react-collapsible'
 import Items from "./Items"
 import {Link} from "react-router-dom";
+import Meals from "./Meals";
 
 
 function Menu(){
@@ -70,23 +71,7 @@ function Menu(){
                     <button onClick={addNewTime}  className={"timeButton"}><Link to={"/menu"}>Add Time</Link></button>
                 </div>
             </div>
-
-            <div className={"menu"}>
-                <div>
-                    {
-                        menu.map((item, id) =>(
-                            <div className={"column is-flex"}>
-                                <div className={"field"}>
-                                    <Collapsible key={id} trigger={item.type}>
-                                        <Items/>
-                                    </Collapsible>
-                                </div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-
+           <Meals/>
         </div>
     )
 }
