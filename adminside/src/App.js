@@ -1,5 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import React from 'react';
+
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import SignIn from "./components/SignIn";
@@ -8,7 +10,7 @@ import AdminAccount from "./components/AdminAccount";
 import Menu from "./components/Menu";
 import Orders from "./components/Orders";
 import Inventory from "./components/Inventory";
-
+import Bagels from "./components/Bagels";
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
                 <Route exact path={"/menu"} component={Menu}/>
                 <Route exact path={"/orders"} component={Orders}/>
                 <Route exact path={"/inventory"} component={Inventory}/>
+
             </Switch>
         </Router>
     </div>

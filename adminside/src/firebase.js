@@ -57,6 +57,7 @@ const logout = () => {
     auth.signOut()
 }
 
+
 export {
     auth,
     db,
@@ -64,5 +65,5 @@ export {
     registerWithEmailAndPassword,
     logout,
     addTime,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
 }

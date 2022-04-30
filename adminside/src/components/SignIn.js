@@ -1,7 +1,7 @@
 import "../style/style.css"
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useAuthState} from "react-firebase-hooks/auth";
-import {auth, registerWithEmailAndPassword, signInWithEmailAndPassword} from "../firebase";
+import {auth, signInWithEmailAndPassword} from "../firebase";
 import {Link, useHistory} from "react-router-dom";
 
 function SignIn() {
@@ -11,10 +11,10 @@ function SignIn() {
     const history = useHistory()
 
 
-    // useEffect(() => {
-    //     if(loading) return
-    //     if(admin) history.replace("/account")
-    // })
+    useEffect(() => {
+        if(loading) return
+        if(admin) history.replace("/menu")
+    }, [])
 
     return (
 
