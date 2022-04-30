@@ -11,10 +11,10 @@ function SignIn() {
     const history = useHistory()
 
 
-    // useEffect(() => {
-    //     if(loading) return
-    //     if(admin) history.replace("/menu")
-    // })
+    useEffect(() => {
+        if(loading) return
+        if(admin) history.replace("/menu")
+    }, [])
 
     return (
 

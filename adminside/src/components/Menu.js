@@ -1,77 +1,66 @@
 import "../style/style.css"
 import React, {useEffect, useState} from 'react'
 import {addTime, db} from "../firebase"
-import {Link} from "react-router-dom";
-import Meals from "./Meals";
+import BreakfastSandwich from "./BreakfastSandwich";
+import Time from "./Time";
+import Bagels from "./Bagels";
+import {FormControl, MenuItem, Select} from "@material-ui/core";
+import CreamCheese from "./CreamCheese";
+import {ToastContainer} from "material-react-toastify";
+
 
 
 function Menu(){
     const [menu, setMenu] = useState([])
-    const [time, setTime] = useState([])
-    const [hour,setHour] = useState("")
     const [loading, setLoading] = useState(true)
     const DbGetMenu = async () => {
         const newItems = []
         const res = db.collection("Menu")
         const data = await res.get()
         data.docs.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
             newItems.push(doc.data())
         })
         setMenu(menu.concat(newItems))
     }
-    const resetInput = () => {
-        setHour("");
-    }
-    const addNewTime  = () => {
-        addTime(hour).then(r => console.log(hour));
-        resetInput();
-    }
+    const [age, setAge] = React.useState("");
 
-    const getTime = async () => {
-        const newTime = []
-        const timeRes = db.collection("Time")
-        const data = await timeRes.get()
-        data.docs.forEach((doc) => {
-            newTime.push(doc.data())
-        })
-        setTime(time.concat(newTime))
-    }
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
+
     useEffect(() => {
         DbGetMenu()
-        getTime()
     }, []);
 
     return(
         <div className="menu_container">
-            <div className={"timeSection"}>
-               <div className={"selectTime"}>
-                   <h5>Current pick-up times</h5>
-                   {
-                       <select className={"selectBody"}>
-                           {
-                               time.map((clock, id) => (
-                                   <option value={clock.time}>{clock.time}</option>
-                               ))
-                           }
-                       </select>
-                   }
-               </div>
-                <div className={"addTime"}>
-                    <h5>Add new pick-up times</h5>
-                    <input
-                        type={"text"}
-                        className={"addTime_textbox"}
-                        value={hour}
-                        onChange={(e) => setHour(e.target.value)}
-                        placeholder="Example: 8:00 AM"
-                    />
-                    <button onClick={addNewTime}  className={"timeButton"}><Link to={"/menu"}>Add Time</Link></button>
-                </div>
+            <div className={"menus"}>
+                {/*<Meals/>*/}
+                <FormControl
+                    variant={"outlined"}
+                >
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={"Breakfast Sandwiches"}
+                        onChange={handleChange}
 
+                    >
+                        <MenuItem value={"Breakfast Sandwiches"} className={"menuTitleSelectList"} ><a href={"#breakSandwiches"}>Breakfast Sandwiches</a></MenuItem>
+                        <MenuItem value={"Bagels"} className={"menuTitleSelectList"}><a href={"#bagels"}>Bagels</a></MenuItem>
+                        <MenuItem value={"Cream Cheese"} className={"menuTitleSelectList"}><a href={"#creamcheese"}>Cream Cheese</a></MenuItem>
+                    </Select>
+                </FormControl>
+
+                <h1 className={"menuTitle"} id={"breakSandwiches"}><a href={"#breakSandwiches"}>Breakfast Sandwiches</a> </h1>
+                <BreakfastSandwich/>
+                <h1 className={"menuTitle"} id={"bagels"}><a href={"#bagels"}>Bagels</a></h1>
+                <Bagels/>
+                <h1 className={"menuTitle"} id={"creamcheese"}><a href={"#creamcheese"}>Cream Cheese</a></h1>
+                <CreamCheese/>
             </div>
-            <div>
-                <Meals/>
+            <div className={"setTime"}>
+                <Time/>
             </div>
 
         </div>

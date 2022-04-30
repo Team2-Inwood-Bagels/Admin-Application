@@ -7,7 +7,6 @@ import {
 } from '../firebase'
 import "../style/style.css"
 
-
 function CreateAccount() {
 
     const [email, setEmail] = useState("")

@@ -67,8 +67,6 @@
 }
 
 
-/*Sign In*/
-
 
 /*Create Account*/
 
@@ -346,46 +344,120 @@ h5 {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.addNewItems{
-
-}
 
 /* New menu style*/
 
-.customCard{
-    width: 400px;
-    height: 290px;
-    background-color: #000;
-    color: #fff;
-    padding: 40px;
+.menu_container{
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    margin: 20px 0 20px 50px;
+}
+.menuTitle{
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.menuCard{
+    box-shadow: 10px 10px;
+    width: 450px;
+    height: 200px;
+    padding: 20px;
     border-radius: 20px;
     margin: 15px 15px;
     position: relative;
     bottom: 25px;
-
-}
-
-.meals_container{
-    height: 100vh;
-    top: 15px;
-    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-    padding-bottom: 20px;
-    position: relative;
+    justify-content: space-between;
+
 }
 
-.addButton, .deleteButton{
-    border-radius: 10px;
-    border: none;
-    padding: 10px;
+.card_descrip, .card_cost, .card_header{
+    font-family: 'Poppins', sans-serif;
 }
+
+.card_descrip{
+    font-style: italic;
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+.card_header{
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+
+}
+
 
 .deleteButton{
     margin-top: 10px;
+}
+
+.addButton{
+    padding: 10px;
+    border: none;
+    color: #fff;
+    background-color: #000;
+    margin: 20px;
+    border-radius: 15px;
+    width: 15%;
+}
+
+
+/*Profile*/
+
+.textField{
+    margin: 20px;
+}
+.profileText{
+    width: 30%;
+}
+.updateButton{
+    border: none;
+    padding: 10px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    border-radius: 15px;
+}
+.editText{
+    width: 80%;
+}
+
+/*Create Account*/
+
+.createAccount_divTF{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 20px;
+
+}
+.createAccount_textField{
+    width: 20%;
+    display: block;
+    margin: 20px;
+
+}
+.createAccount_fields{
+    text-align: center;
+}
+.selectRole{
+    width: 20%;
+}
+.accountPage {
+    display: block;
+    text-align: center;
+    margin-top: 50px;
 }
 
 @media screen
