@@ -1,17 +1,15 @@
-import {Link} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {addTime, db} from "../firebase";
-import {Checkbox, TextField} from "@material-ui/core";
 
 function Time() {
-    const [time, setTime] = useState([])
-    const [hour,setHour] = useState("")
+    const [times, setTime] = useState([])
+    // const [hour,setHour] = useState("")
     const [checked, setChecked] = useState("")
     const resetInput = () => {
-        setHour("");
+        // setHour("");
     }
     const addNewTime  = () => {
-        addTime(hour).then(r => console.log(hour));
+        // addTime(hour).then(r => console.log(hour));
         resetInput();
     }
 
@@ -33,6 +31,15 @@ function Time() {
                setTime(arr => [...arr, data]);
            })
        })
+
+        // db.collection("Time").onSnapshot((snapshot => {
+        //     setTime(
+        //         snapshot.docs.map((doc) => ({
+        //             id:doc.id,
+        //             data: doc.data()
+        //         }))
+        //     )
+        // }))
 
     }
 
@@ -68,13 +75,15 @@ function Time() {
 
             <div>
 
-                    <select className={"selectBody"}>
-                        {
-                            time.map((data, id) => (
-                                <option value={data.time}>{data.time}</option>
-                            ))
-                        }
-                    </select>
+                    {
+                        <select className={"selectBody"}>
+                            {
+                                times.map((clock, id) => (
+                                    <option value={id}>{clock.time}</option>
+                                ))
+                            }
+                        </select>
+                    }
 
             </div>
 

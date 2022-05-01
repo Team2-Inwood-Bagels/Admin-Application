@@ -13,6 +13,8 @@ import {
 } from "@material-ui/core";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import CurrencyInput from "react-currency-input-field";
+
 
 function Bagels() {
     const [bagel, setBagel] = useState([])
@@ -21,7 +23,7 @@ function Bagels() {
     const [open, setOpen] = React.useState(false)
     const [getName, setGetName] = useState("")
     const [getPrice, setGetPrice] = useState("")
-    const [name, setName] = useState("")
+    const [name, setName] = useState()
     const [price, setPrice] = useState("")
     const [getDescription, setGetDescription] = useState("")
     const [disable, setDisable] = useState(true)
@@ -78,17 +80,14 @@ function Bagels() {
             name: name,
             price: price,
         });
-        setName("");
+        setName();
         setPrice("");
     }
 
-    const ifEmpty = () => {
-        (name && price) ?  setDisable(false) : setDisable(true);
-    }
 
     useEffect(() => {
         getBagel()
-        ifEmpty()
+
     }, [])
 
     return(
@@ -113,22 +112,27 @@ function Bagels() {
                    label={"Name"}
                    value={name}
                    onChange={(e) => setName(e.target.value.trim())}
-                   placeholder={"Name of bagel"}
+                   placeholder={"Add Name"}
                    style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
                />
                <TextField
                    required={true}
-                   type={"text"}
+                   InputProps={{
+                       startAdornment: "$"
+                   }}
+                   type={"number"}
                    variant={"outlined"}
                    label={"Price"}
                    value={price}
                    onChange={(e) => setPrice(e.target.value.trim())}
-                   placeholder={"Price of bagel"}
+                   placeholder={"Add Price"}
                    style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
                />
+
                <button
                    className={"addButton"}
-                   disabled={ifEmpty}
+                   disabled={!price}
+
                    onClick={(event) => {
                        addNewBagel(event);
                        addNotify()
@@ -146,7 +150,7 @@ function Bagels() {
                             <div className={"cardInfo"}>
                                 <h5 className={"card_header"}>{data.name}</h5>
                                 {/*<p className={"card_descrip"}>{data.Description}</p>*/}
-                                <p className={"card_cost"}>Cost: {data.price}</p>
+                                <p className={"card_cost"}>Cost: ${data.price}</p>
                                 <Button onClick={() => {
                                     handleClickOpen()
                                     setSelectedItem(id)
@@ -208,7 +212,10 @@ function Bagels() {
                     />
 
                     <TextField
-                        type={"text"}
+                        type={"number"}
+                        InputProps={{
+                            startAdornment: "$"
+                        }}
                         variant={"outlined"}
                         label={"Price"}
                         onChange={(e) => setGetPrice(e.target.value)}

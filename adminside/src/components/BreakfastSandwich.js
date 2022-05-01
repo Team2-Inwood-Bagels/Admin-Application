@@ -85,6 +85,7 @@ function BreakfastSandwich() {
 
     useEffect(() => {
         getSandwiches()
+
     }, [])
 
     return(
@@ -119,13 +120,16 @@ function BreakfastSandwich() {
                     label={"Description"}
                     value={description}
                     onChange={(e) => setDescription(e.target.value.trim())}
-                    placeholder={"Price of bagel"}
+                    placeholder={"Add Price"}
                     style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
                 />
                 <TextField
                     required={true}
                     helperText={"Required Field"}
-                    type={"text"}
+                    type={"number"}
+                    InputProps={{
+                        startAdornment: "$"
+                    }}
                     variant={"outlined"}
                     label={"Price"}
                     value={price}
@@ -135,7 +139,7 @@ function BreakfastSandwich() {
                 />
                 <button
                     title={"Name and price fields can not be empty"}
-                    disabled={ifEmpty}
+                    disabled={!price}
                     className={"addButton"}
                     onClick={(event) => {
                         addNewSand(event);
@@ -156,7 +160,7 @@ function BreakfastSandwich() {
                                <div className={"cardInfo"}>
                                    <h5 className={"card_header"}>{data.Name}</h5>
                                    <p className={"card_descrip"}>{data.Description}</p>
-                                   <p className={"card_cost"}>Cost: {data.Price}</p>
+                                   <p className={"card_cost"}>Cost: ${data.Price}</p>
                                    <Button onClick={() => {
                                        handleClickOpen()
                                        setSelectedItem(id)
@@ -216,7 +220,10 @@ function BreakfastSandwich() {
                    />
 
                     <TextField
-                        type={"text"}
+                        InputProps={{
+                            startAdornment: "$"
+                        }}
+                        type={"number"}
                         variant={"outlined"}
                         label={"Price"}
                         value={getPrice}
