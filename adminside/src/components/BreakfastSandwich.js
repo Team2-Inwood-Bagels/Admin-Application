@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import 'react-toastify/dist/ReactToastify.css';
 import {toast, ToastContainer} from "react-toastify";
+import ScrollButton from "./ScrollButton";
 
 
 function BreakfastSandwich() {
@@ -146,6 +147,7 @@ function BreakfastSandwich() {
                         addNotify()
 
                     }}
+                    style={{ cursor: "pointer"}}
                 >
                     Add A New Sandwich
                 </button>
@@ -206,7 +208,7 @@ function BreakfastSandwich() {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Edit Item"}
+                    {"Edit " + getName + " details"}
                 </DialogTitle>
                 <DialogContent>
                    <TextField
@@ -264,7 +266,7 @@ function BreakfastSandwich() {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Delete item from menu"}
+                    {"Delete " + getName + " from menu"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
@@ -281,7 +283,6 @@ function BreakfastSandwich() {
                     }}>Yes</Button>
                 </DialogActions>
             </Dialog>
-
         </div>
     )
 }

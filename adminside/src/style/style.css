@@ -146,24 +146,26 @@ body {
     width: 75vw;
 }
 
-h5 {
-    display: flex;
-    color: rgb(10, 10, 10);
-    flex-wrap: wrap;
-    justify-content: space-between;
-    font-weight: bold;
-    font-size: 18px;
-}
+/*h5 {*/
+/*    display: flex;*/
+/*    color: rgb(10, 10, 10);*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: space-between;*/
+/*    font-weight: bold;*/
+/*    font-size: 18px;*/
+/*}*/
 
 
 .menu_container{
     display: grid;
     grid-template-columns: 5fr 2fr;
-    margin: 20px 0 20px 50px;
+    margin: 50px 120px 20px 80px;
 }
+
 .menuTitle{
     margin-bottom: 30px;
-    margin-top: 20px;
+    margin-top: 40px;
+    font-size: 24px;
 }
 a{
     text-decoration: none;
@@ -203,8 +205,11 @@ a{
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 5px;
-
 }
+
+/*.setTime{*/
+/*    margin-top: 180px;*/
+/*}*/
 
 
 .deleteButton{
@@ -220,7 +225,6 @@ a{
     border-radius: 15px;
     width: 15%;
 }
-
 
 /*Profile*/
 
@@ -267,6 +271,18 @@ a{
     display: block;
     text-align: center;
     margin-top: 50px;
+}
+
+.scrollUo{
+    position: relative;
+    right: 50%;
+    bottom: 40px;
+    height: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 1;
+    cursor: pointer;
+
 }
 
 @media screen
