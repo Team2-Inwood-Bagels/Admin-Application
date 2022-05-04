@@ -58,7 +58,7 @@ function PickUpTime() {
     }, [])
     return(
         <div>
-            <h5>Change Pick Up Times Selection </h5>
+            {/*<h5>Change Pick Up Times Selection </h5>*/}
             <FormControl variant={"outlined"}  label={"Pick up time selection"} style={{width: "65%"}}>
                 <InputLabel id={"time-label-id"}>Edit Pick Up Time Selections</InputLabel>
                 <Select
