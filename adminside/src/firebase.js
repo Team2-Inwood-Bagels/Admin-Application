@@ -17,16 +17,20 @@ const signInWithEmailAndPassword = async (email, password) => {
     }
 }
 
-const registerWithEmailAndPassword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (name, email, role, password) => {
     try {
         const res = await auth.createUserWithEmailAndPassword(email, password);
         const user = res.user;
-        await db.collection("Admin").add({
-            uid: user.uid,
+        const {uid} = user;
+
+        await db.collection("Admin").doc(uid).set({
+            uid: uid,
             name,
             authProvider: "local",
-            email
+            email,
+            role
         })
+
     } catch (err) {
         console.error(err);
         alert(err.message);

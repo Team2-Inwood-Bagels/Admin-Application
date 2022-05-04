@@ -1,8 +1,9 @@
 import "../style/style.css"
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth, signInWithEmailAndPassword} from "../firebase";
 import {Link, useHistory} from "react-router-dom";
+import {TextField} from "@material-ui/core";
 
 function SignIn() {
     const [email, setEmail] = useState("")
@@ -10,41 +11,43 @@ function SignIn() {
     const [admin, loading, error] = useAuthState(auth)
     const history = useHistory()
 
+    // useEffect(() => {
+    //     if(loading) return
+    //     if(admin) history.replace("/account")
+    // })
 
-    useEffect(() => {
-        if(loading) return
-        if(admin) history.replace("/menu")
-    }, [])
 
     return (
 
         <div className={"createAccountDiv"}>
             <h1 className={"createAccount_header"}>Sign In</h1>
-            <div className={"signUp_wrapper"}>
-                <div className={"row"}>
-                    <div className={"column"}>
-                        <div className={"colOne"}>
-                            <p>E-mail Address <span>*</span></p>
-                            <input
-                                type="email"
-                                className={"signUp_textBox"}
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="Enter Email"
-                            />
-                        </div>
-                    </div>
-                    <div className={"colTwo"}>
-                        <p>Enter password <span>*</span></p>
-                        <input
-                            type="password"
-                            className={"signUp_textBox"}
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Password"
-                        />
-                    </div>
-                </div>
+            <div className={"createAccount_divTF"} >
+                <TextField
+                    style={{margin: "20px"}}
+                    type={"email"}
+                    className={"createAccount_textField"}
+                    label={"Enter Email"}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={email}
+                    variant={"outlined"}
+                    required={true}
+                    helperText={"Required field"}
+                />
+
+
+                <TextField
+                    style={{margin: "20px"}}
+                    type={"password"}
+                    className={"createAccount_textField"}
+                    label={"Enter Password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder={"Enter Password"}
+                    variant={"outlined"}
+                    required={true}
+                    helperText={"Required field"}
+                />
             </div>
             <div className={"below_textBox"}>
                 <button
@@ -62,3 +65,4 @@ function SignIn() {
     )
 }
 export default SignIn;
+

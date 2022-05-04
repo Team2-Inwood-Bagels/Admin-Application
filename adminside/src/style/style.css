@@ -1,12 +1,12 @@
 /*Navbar*/
 
-.navbar {
+.navbar{
     background-color: #000;
     display: flex;
     /*justify-content: space-between;*/
 }
 
-.navbar-item {
+.navbar-item{
     color: #ffffff;
     text-decoration: none;
     padding: 15px;
@@ -19,8 +19,7 @@
     border-radius: 10px;
     border: none;
 }
-
-.logoutButton a {
+.logoutButton a{
     text-decoration: none;
     color: black;
 }
@@ -29,7 +28,7 @@
     border-bottom: 3px solid #fff;
 }
 
-.logo {
+.logo{
     width: 4%;
     margin: 15px;
 }
@@ -52,29 +51,24 @@
     font-size: large;
     border-radius: 15px;
     border: none;
-}
 
-.homeButton a {
+}
+.homeButton a{
     text-decoration: none;
     color: white;
 }
-
-.home {
+.home{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
 
-
+/*Sign In*/
 
 /*Create Account*/
-
-body {
-    height: 100%;
-}
-
-.createAccount_header {
+body{ height: 100%;}
+.createAccount_header{
     margin-top: 40px;
     text-align: center;
 }
@@ -85,43 +79,45 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
+
 }
 
-.row {
+.row{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+
 }
 
-.colOne {
+.colOne{
     display: flex;
     flex-direction: column;
     margin: 20px 75px;
 }
 
-.colTwo {
+.colTwo{
     display: flex;
     flex-direction: column;
-    margin: 20px 75px;
+    margin:  20px 75px;
 }
 
-.star {
+.star{
     color: #ff0000;
 }
-
-.signUp_textBox {
+.signUp_textBox{
     margin: 20px 0;
     padding: 8px;
     border-radius: 15px;
     border: lightgray 2px solid;
     width: 150%;
+
+
 }
 
-.below_textBox {
+.below_textBox{
     text-align: center;
 }
-
-.createAccount_btn {
+.createAccount_btn{
     border-radius: 20px;
     border: none;
     padding: 15px;
@@ -130,19 +126,15 @@ body {
     width: 15%;
     font-size: 16px;
 }
-
-.createAccount_btn a {
+.createAccount_btn a{
     text-decoration: none;
     color: white;
 }
 
-
 /*Admin Account*/
 
-
 /*Menu*/
-
-.menuContainer {
+.menuContainer{
     text-align: center;
 }
 
@@ -151,7 +143,6 @@ body {
     flex: 0 0 100%;
     width: 180%;
 }
-
 .column.is-flex {
     display: flex;
     font-weight: bold;
@@ -162,53 +153,22 @@ body {
     box-shadow: 2px 2px 8px 0px rgba(0, 5, 25, .3);
 }
 
-
 /* item styling */
-
 .item_s {
     display: flex;
-    flex-direction: column;
     color: grey;
+    flex-direction: column;
     column-gap: 25px;
     font-weight: bolder;
-    height: 90px;
-    width: 58vw;
+    height: 75px;
     box-shadow: 1px 2px 10px 0 rgba(0, 5, 25, .3);
     margin: 9px;
     padding-left: 10px;
     padding-top: 10px;
     justify-content: space-around;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
 }
-
-.item_desc {
-    display: flex;
-    flex-direction: column;
-}
-
-.item_name {
-    display: flex;
-    width: 55vw;
-}
-
-.editdltbtns {
-    display: flex;
-    flex-direction: column;
-}
-
-.deleteItem {
-    border: none;
-    border-radius: 25px;
-    padding: 3px;
-    background-color: #ff0000;
-    margin: 3px;
-    font-weight: bold;
-    font-size: medium;
-    width: 12vw;
-    height: 3.5vh;
-}
-
-.pickDel_btn {
+.pickDel_btn{
     margin-right: 15px;
     border-radius: 15px;
     padding: 15px;
@@ -216,10 +176,11 @@ body {
     box-shadow: 1px 2px 10px 0 rgba(0, 5, 25, .3);
 }
 
+
 .item_container {
     display: flex;
     flex-direction: column;
-    width: 75vw;
+
 }
 
 h5 {
@@ -231,10 +192,12 @@ h5 {
     font-size: 18px;
 }
 
+
 .Collapsible__contentInner {
     display: flex;
     flex: 0 0 100%;
     width: 180%;
+
 }
 
 .Collapsible__contentOuter {
@@ -242,64 +205,54 @@ h5 {
     flex-wrap: wrap;
     width: 180%;
 }
-
-
 /*Time Section*/
-
-.timeSection {
+.timeSection{
     display: flex;
     flex-direction: row;
     margin: 20px;
-}
 
-.addTime {
+}
+.addTime{
     margin: 20px;
 }
-
-.addTime_textbox {
+.addTime_textbox{
     border: lightgray 2px solid;
     border-radius: 15px;
     padding: 10px;
     margin: 20px 10px 20px 0;
     text-align: center;
 }
-
-.timeButton {
+.timeButton{
     border: none;
     border-radius: 15px;
     padding: 10px;
     background-color: #000000;
 }
-
-.editItem {
+.editItem{
     border: none;
     border-radius: 25px;
-    padding: 3px;
+    padding: 10px;
     background-color: #ff0000;
-    margin: 3px;
+    margin: 5px;
     font-weight: bold;
-    font-size: medium;
-    width: 12vw;
-    height: 3.5vh;
 }
 
-.timeButton a {
+.timeButton a{
     color: white;
     text-decoration: none;
     font-size: 14px;
     font-weight: bold;
 }
-
-.selectTime {
+.selectTime{
     margin: 20px;
 }
-
-.selectBody {
+.selectBody{
     border: lightgray 2px solid;
     border-radius: 15px;
     padding: 10px;
     margin: 20px 0;
 }
+
 .menuButtons{
     display: flex;
     align-items: center;
@@ -344,74 +297,47 @@ h5 {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+.addNewItems{
+
+}
 
 /* New menu style*/
 
-.menu_container{
-    display: grid;
-    grid-template-columns: 5fr 2fr;
-    margin: 20px 0 20px 50px;
-}
-.menuTitle{
-    margin-bottom: 30px;
-    margin-top: 20px;
-}
-a{
-    text-decoration: none;
-    color: black;
-}
-
-.cards{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.menuCard{
-    box-shadow: 10px 10px;
-    width: 450px;
-    height: 200px;
-    padding: 20px;
+.customCard{
+    width: 400px;
+    height: 290px;
+    background-color: #000;
+    color: #fff;
+    padding: 40px;
     border-radius: 20px;
     margin: 15px 15px;
     position: relative;
     bottom: 25px;
+
+}
+
+.meals_container{
+    height: 100vh;
+    top: 15px;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    padding-bottom: 20px;
+    position: relative;
 }
 
-.card_descrip, .card_cost, .card_header{
-    font-family: 'Poppins', sans-serif;
+.addButton, .deleteButton{
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
 }
-
-.card_descrip{
-    font-style: italic;
-    font-size: 14px;
-    margin-bottom: 5px;
-    margin-right: 10px;
-}
-.card_header{
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 5px;
-
-}
-
 
 .deleteButton{
     margin-top: 10px;
 }
-
-.addButton{
-    padding: 10px;
-    border: none;
-    color: #fff;
-    background-color: #000;
-    margin: 20px;
-    border-radius: 15px;
-    width: 15%;
-}
-
 
 /*Profile*/
 
@@ -433,8 +359,6 @@ a{
     width: 80%;
 }
 
-/*Create Account*/
-
 .createAccount_divTF{
     display: flex;
     justify-content: center;
@@ -454,7 +378,7 @@ a{
 .selectRole{
     width: 20%;
 }
-.accountPage {
+.accountPage{
     display: block;
     text-align: center;
     margin-top: 50px;
@@ -473,3 +397,4 @@ and (max-width: 1600px) {
         bottom: 90px;
     }
 }
+

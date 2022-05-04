@@ -11,10 +11,13 @@ import {
     DialogTitle,
     Tab
 } from "@material-ui/core";
-
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {toast, ToastContainer} from "react-toastify";
-import {TabContext, TabList, TabPanel} from "@mui/lab";
+
+
 
 function Meals() {
 
@@ -27,6 +30,11 @@ function Meals() {
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
     const [name, setName] = useState("");
+    const addNotify = () => toast.success("Item successfully added to menu.", {
+        icon: "🥯"
+    })
+
+    const deleteNotify = () => toast.warn("Item successfully deleted from menu.")
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -39,7 +47,6 @@ function Meals() {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
     const getBagels = async () => {
         db.collection("Bagels").onSnapshot((snapshot => {
             setBagels(
@@ -123,19 +130,20 @@ function Meals() {
                             <Tab label="Breakfast Sandwiches" value="3" />
                         </TabList>
                     </Box>
+
                    <TabPanel value={"1"}>
                        <div className={"addNewItems"}>
                            <input
                                type={"text"}
                                placeholder={"Item's Name"}
                                value={name}
-                               onChange={(e) => setName(e.target.value.trim())}
+                               onChange={(e) => setName(e.target.value)}
                            />
                            <button className={"addButton"} onClick={(event) => {
                                bagelsSubmit(event);
-
+                               addNotify()
                            }}>Add new a new bagel</button>
-
+                           <ToastContainer/>
 
                        </div>
                    </TabPanel>
@@ -150,9 +158,9 @@ function Meals() {
                             />
                             <button className={"addButton"} onClick={(event) => {
                                 creamSubmit(event);
-
+                                addNotify();
                             }}>Add a new Cream Cheese</button>
-
+                            <ToastContainer/>
                         </div>
                     </TabPanel>
 
@@ -178,7 +186,7 @@ function Meals() {
                             />
                             <button className={"addButton"} onClick={(event) => {
                                 breakSandwichSubmit(event)
-
+                                addNotify();
                             }}>Add new Breakfast Sandwich</button>
                             <ToastContainer/>
                         </div>
@@ -195,9 +203,8 @@ function Meals() {
                                         <button className={"deleteButton"} onClick={() => {
                                             handleClickOpen()
                                             setSelectedItem(id)
+                                            // db.collection("Breakfast Sandwiches").doc(id).delete()
                                         }}>Delete Item</button>
-
-
                                     </Card>
                                 </TabPanel>
 
@@ -208,11 +215,13 @@ function Meals() {
                                 <TabPanel value={"2"}>
                                     <Card style={{backgroundColor: "#3D3D3D", color:"white", borderRadius: "20px"}} className={"customCard"} key={id}>
                                         <p>{data.name}</p>
+                                        {/*<p>{data.Description}</p>*/}
+                                        {/*<p>Cost: {data.Price}</p>*/}
                                         <button className={"deleteButton"} onClick={() => {
                                             handleClickOpen()
                                             setSelectedItem(id)
+                                            // db.collection("Breakfast Sandwiches").doc(id).delete()
                                         }}>Delete Item</button>
-                                        <button className={"deleteButton"}>Edit Item</button>
                                     </Card>
                                 </TabPanel>
 
@@ -223,12 +232,13 @@ function Meals() {
                                 <TabPanel value={"1"} >
                                     <Card style={{backgroundColor: "#3D3D3D", color:"white", borderRadius: "20px"}} className={"customCard"} key={id}>
                                         <p>{data.name}</p>
+                                        {/*<p>{data.Description}</p>*/}
+                                        {/*<p>Cost: {data.Price}</p>*/}
                                         <button className={"deleteButton"} onClick={() => {
                                             handleClickOpen()
                                             setSelectedItem(id)
+                                            // db.collection("Breakfast Sandwiches").doc(id).delete()
                                         }}>Delete Item</button>
-
-
                                     </Card>
                                 </TabPanel>
 
@@ -236,10 +246,7 @@ function Meals() {
                         }
                     </div>
                 </TabContext>
-
             </Box>
-
-          {/*Delete Item*/}
             <Dialog
                 open={open}
                 onClose={handleClose}
@@ -263,7 +270,7 @@ function Meals() {
                             db.collection("Breakfast Sandwiches").doc(selectedItem).delete()
                             db.collection("Bagels").doc(selectedItem).delete()
                             db.collection("Cream Cheese").doc(selectedItem).delete()
-
+                            deleteNotify()
 
                         }}
 
@@ -274,7 +281,6 @@ function Meals() {
                     </Button>
                 </DialogActions>
             </Dialog>
-            
         </div>
     )
 }
