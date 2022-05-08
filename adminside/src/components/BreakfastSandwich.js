@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import 'react-toastify/dist/ReactToastify.css';
 import {toast, ToastContainer} from "react-toastify";
+import {Alert} from "@mui/lab";
 
 
 
@@ -28,13 +29,9 @@ function BreakfastSandwich() {
     const [description, setDescription] = useState("")
     const [getDescription, setGetDescription] = useState("")
     const [selectedItem, setSelectedItem] = useState();
-    const [disable, setDisable] = useState(true)
 
-    const ifEmpty = () => {
-        (name && price) ?  setDisable(false) : setDisable(true);
-    }
 
-    const addNotify = () =>toast.info('🥯 New Item Added!', {
+    const addNotify = () =>toast.info('🥯 New ' + name + ' Added!', {
         position: "bottom-left",
         autoClose: 5000,
         hideProgressBar: false,
@@ -111,7 +108,7 @@ function BreakfastSandwich() {
                     className={"addNewItem"}
                     label={"Name"}
                     value={name}
-                    onChange={(e) => setName(e.target.value.trim())}
+                    onChange={(e) => setName(e.target.value.trimStart())}
                     placeholder={"Name of bagel"}
                     style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
                 />
@@ -129,22 +126,25 @@ function BreakfastSandwich() {
                     helperText={"Required Field"}
                     type={"number"}
                     InputProps={{
-                        startAdornment: "$"
+                        startAdornment: "$",
+                        inputProps: {min: 1}
                     }}
                     variant={"outlined"}
                     label={"Price"}
-                    value={price}
+                    value={Math.abs(parseInt(price))}
                     onChange={(e) => setPrice(e.target.value.trim())}
                     placeholder={"Price of bagel"}
                     style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
+
                 />
                 <button
                     title={"Name and price fields can not be empty"}
-                    disabled={!price}
+                    disabled={!price || !name}
                     className={"addButton"}
                     onClick={(event) => {
                         addNewSand(event);
                         addNotify()
+
 
                     }}
                     style={{ cursor: "pointer"}}
@@ -215,7 +215,7 @@ function BreakfastSandwich() {
                        type={"text"}
                        variant={"outlined"}
                        label={"Name"}
-                       onChange={(e) =>setGetName(e.target.value)}
+                       onChange={(e) =>setGetName(e.target.value.trimStart())}
                        value={getName}
                        placeholder={getName}
                        style={{margin: "20px"}}
@@ -223,13 +223,14 @@ function BreakfastSandwich() {
 
                     <TextField
                         InputProps={{
-                            startAdornment: "$"
+                            startAdornment: "$",
+                            inputProps: {min: 1}
                         }}
                         type={"number"}
                         variant={"outlined"}
                         label={"Price"}
-                        value={getPrice}
-                        onChange={(e) =>{setGetPrice(e.target.value)}}
+                        value={Math.abs(parseInt(getPrice))}
+                        onChange={(e) =>{setGetPrice(e.target.value.trimStart())}}
                         placeholder={getPrice}
                         style={{margin: "20px"}}
                     />
@@ -238,7 +239,7 @@ function BreakfastSandwich() {
                         type={"text"}
                         variant={"outlined"}
                         label={"Description"}
-                        onChange={(e) =>{setGetDescription(e.target.value)}}
+                        onChange={(e) =>{setGetDescription(e.target.value.trimStart())}}
                         value={getDescription}
                         placeholder={getDescription}
                         style={{margin: "20px"}}

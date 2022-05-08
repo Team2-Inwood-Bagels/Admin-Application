@@ -23,7 +23,7 @@ function Bagels() {
     const [open, setOpen] = React.useState(false)
     const [getName, setGetName] = useState("")
     const [getPrice, setGetPrice] = useState("")
-    const [name, setName] = useState()
+    const [name, setName] = useState("")
     const [price, setPrice] = useState("")
     const [getDescription, setGetDescription] = useState("")
     const [disable, setDisable] = useState(true)
@@ -111,28 +111,29 @@ function Bagels() {
                    className={"addNewItem"}
                    label={"Name"}
                    value={name}
-                   onChange={(e) => setName(e.target.value.trim())}
+                   onChange={(e) => setName(e.target.value.trimStart())}
                    placeholder={"Add Name"}
                    style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
                />
                <TextField
                    required={true}
                    InputProps={{
-                       startAdornment: "$"
+                       startAdornment: "$",
+                       inputProps: {min: 1}
                    }}
                    type={"number"}
                    variant={"outlined"}
                    label={"Price"}
-                   value={price}
-                   onChange={(e) => setPrice(e.target.value.trim())}
+                   value={Math.abs(parseInt(price))}
+                   onChange={(e) => setPrice(e.target.value.trimStart())}
                    placeholder={"Add Price"}
                    style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
                />
 
                <button
                    className={"addButton"}
-                   disabled={!price}
-
+                   disabled={!price || !name}
+                   style={{ cursor: "pointer"}}
                    onClick={(event) => {
                        addNewBagel(event);
                        addNotify()
@@ -205,7 +206,7 @@ function Bagels() {
                         type={"text"}
                         variant={"outlined"}
                         label={"Name"}
-                        onChange={(e) => setGetName(e.target.value)}
+                        onChange={(e) => setGetName(e.target.value.trimStart())}
                         value={getName}
                         placeholder={getName}
                         style={{margin: "30px", width: "70%",}}
@@ -214,12 +215,14 @@ function Bagels() {
                     <TextField
                         type={"number"}
                         InputProps={{
-                            startAdornment: "$"
+                            startAdornment: "$",
+                            inputProps: {min: 1}
                         }}
+
                         variant={"outlined"}
                         label={"Price"}
-                        onChange={(e) => setGetPrice(e.target.value)}
-                        value={getPrice}
+                        onChange={(e) => setGetPrice(e.target.value.trimStart())}
+                        value={Math.abs(parseInt(getPrice))}
                         placeholder={getPrice}
                         style={{margin: "30px", width: "70%",}}
                     />

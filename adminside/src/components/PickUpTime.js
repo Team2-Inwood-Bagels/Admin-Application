@@ -140,7 +140,7 @@ function PickUpTime() {
                     </DialogContentText>
 
                     <TextField
-                        type={"text"}
+                        type={"time"}
                         variant={"outlined"}
                         label={"Add new time"}
                         onChange={(e) =>setSelectedTime(e.target.value)}
