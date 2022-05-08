@@ -46,17 +46,7 @@ const sendPasswordResetEmail = async (email) => {
         alert(err.message)
     }
 }
-const addTime = async(time) =>{
-    try {
 
-        await db.collection("Time").add({
-            time
-        })
-    } catch (err) {
-        console.error(err);
-        alert(err.message);
-    }
-}
 const logout = () => {
     auth.signOut()
 }
@@ -68,6 +58,5 @@ export {
     signInWithEmailAndPassword,
     registerWithEmailAndPassword,
     logout,
-    addTime,
     sendPasswordResetEmail,
 }

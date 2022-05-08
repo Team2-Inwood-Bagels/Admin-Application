@@ -13,6 +13,8 @@ import {
 } from "@material-ui/core";
 import 'react-toastify/dist/ReactToastify.css';
 import {toast, ToastContainer} from "react-toastify";
+import {Alert} from "@mui/lab";
+
 
 
 function BreakfastSandwich() {
@@ -27,13 +29,9 @@ function BreakfastSandwich() {
     const [description, setDescription] = useState("")
     const [getDescription, setGetDescription] = useState("")
     const [selectedItem, setSelectedItem] = useState();
-    const [disable, setDisable] = useState(true)
 
-    const ifEmpty = () => {
-        (name && price) ?  setDisable(false) : setDisable(true);
-    }
 
-    const addNotify = () =>toast.info('🥯 New Item Added!', {
+    const addNotify = () =>toast.info('🥯 New ' + name + ' Added!', {
         position: "bottom-left",
         autoClose: 5000,
         hideProgressBar: false,
@@ -85,6 +83,7 @@ function BreakfastSandwich() {
 
     useEffect(() => {
         getSandwiches()
+
     }, [])
 
     return(
@@ -109,7 +108,7 @@ function BreakfastSandwich() {
                     className={"addNewItem"}
                     label={"Name"}
                     value={name}
-                    onChange={(e) => setName(e.target.value.trim())}
+                    onChange={(e) => setName(e.target.value.trimStart())}
                     placeholder={"Name of bagel"}
                     style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
                 />
@@ -119,29 +118,36 @@ function BreakfastSandwich() {
                     label={"Description"}
                     value={description}
                     onChange={(e) => setDescription(e.target.value.trim())}
-                    placeholder={"Price of bagel"}
+                    placeholder={"Add Price"}
                     style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
                 />
                 <TextField
                     required={true}
                     helperText={"Required Field"}
-                    type={"text"}
+                    type={"number"}
+                    InputProps={{
+                        startAdornment: "$",
+                        inputProps: {min: 1}
+                    }}
                     variant={"outlined"}
                     label={"Price"}
-                    value={price}
+                    value={Math.abs(parseInt(price))}
                     onChange={(e) => setPrice(e.target.value.trim())}
                     placeholder={"Price of bagel"}
                     style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
+
                 />
                 <button
                     title={"Name and price fields can not be empty"}
-                    disabled={ifEmpty}
+                    disabled={!price || !name}
                     className={"addButton"}
                     onClick={(event) => {
                         addNewSand(event);
                         addNotify()
 
+
                     }}
+                    style={{ cursor: "pointer"}}
                 >
                     Add A New Sandwich
                 </button>
@@ -156,7 +162,7 @@ function BreakfastSandwich() {
                                <div className={"cardInfo"}>
                                    <h5 className={"card_header"}>{data.Name}</h5>
                                    <p className={"card_descrip"}>{data.Description}</p>
-                                   <p className={"card_cost"}>Cost: {data.Price}</p>
+                                   <p className={"card_cost"}>Cost: ${data.Price}</p>
                                    <Button onClick={() => {
                                        handleClickOpen()
                                        setSelectedItem(id)
@@ -202,25 +208,29 @@ function BreakfastSandwich() {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Edit Item"}
+                    {"Edit " + getName + " details"}
                 </DialogTitle>
                 <DialogContent>
                    <TextField
                        type={"text"}
                        variant={"outlined"}
                        label={"Name"}
-                       onChange={(e) =>setGetName(e.target.value)}
+                       onChange={(e) =>setGetName(e.target.value.trimStart())}
                        value={getName}
                        placeholder={getName}
                        style={{margin: "20px"}}
                    />
 
                     <TextField
-                        type={"text"}
+                        InputProps={{
+                            startAdornment: "$",
+                            inputProps: {min: 1}
+                        }}
+                        type={"number"}
                         variant={"outlined"}
                         label={"Price"}
-                        value={getPrice}
-                        onChange={(e) =>{setGetPrice(e.target.value)}}
+                        value={Math.abs(parseInt(getPrice))}
+                        onChange={(e) =>{setGetPrice(e.target.value.trimStart())}}
                         placeholder={getPrice}
                         style={{margin: "20px"}}
                     />
@@ -229,7 +239,7 @@ function BreakfastSandwich() {
                         type={"text"}
                         variant={"outlined"}
                         label={"Description"}
-                        onChange={(e) =>{setGetDescription(e.target.value)}}
+                        onChange={(e) =>{setGetDescription(e.target.value.trimStart())}}
                         value={getDescription}
                         placeholder={getDescription}
                         style={{margin: "20px"}}
@@ -257,7 +267,7 @@ function BreakfastSandwich() {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Delete item from menu"}
+                    {"Delete " + getName + " from menu"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
@@ -274,7 +284,6 @@ function BreakfastSandwich() {
                     }}>Yes</Button>
                 </DialogActions>
             </Dialog>
-
         </div>
     )
 }

@@ -1,78 +1,81 @@
 import "../style/style.css"
 import React, {useEffect, useState} from 'react'
-import {addTime, db} from "../firebase"
-import Collapsible from 'react-collapsible'
-import Items from "./Items"
-import {Link} from "react-router-dom";
-import Meals from "./Meals";
+import {db} from "../firebase"
+import BreakfastSandwich from "./BreakfastSandwich";
+import Bagels from "./Bagels";
+import {Divider, FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
+import CreamCheese from "./CreamCheese";
+import PickUpTime from "./PickUpTime";
+import {HorizontalSplit} from "@material-ui/icons";
+
 
 
 function Menu(){
     const [menu, setMenu] = useState([])
-    const [time, setTime] = useState([])
-    const [hour,setHour] = useState("")
+    const [menuName, setMenuName] = useState("")
     const [loading, setLoading] = useState(true)
     const DbGetMenu = async () => {
         const newItems = []
         const res = db.collection("Menu")
         const data = await res.get()
         data.docs.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
             newItems.push(doc.data())
         })
         setMenu(menu.concat(newItems))
     }
-    const resetInput = () => {
-        setHour("");
-    }
-    const addNewTime  = () => {
-        addTime(hour).then(r => console.log(hour));
-        resetInput();
-    }
 
-    const getTime = async () => {
-        const newTime = []
-        const timeRes = db.collection("Time")
-        const data = await timeRes.get()
-        data.docs.forEach((doc) => {
-            newTime.push(doc.data())
-        })
-        setTime(time.concat(newTime))
-    }
+    const handleChange = (event) => {
+        setMenuName(event.target.value);
+    };
+
     useEffect(() => {
         DbGetMenu()
-        getTime()
     }, []);
 
     return(
-        <div className="menu_container">
-            <div className={"timeSection"}>
-               <div className={"selectTime"}>
-                   <h5>Current pick-up times</h5>
-                   {
-                       <select className={"selectBody"}>
-                           {
-                               time.map((clock, id) => (
-                                   <option value={clock.time}>{clock.time}</option>
-                               ))
-                           }
-                       </select>
-                   }
+       <div className={"menuPage"}>
+           <div className="menu_container">
+               <div className={"menus"}>
+                   <FormControl
+                       variant={"outlined"}
+                       style={{width: "25%"}}
+                   >
+                       <InputLabel id={"Menu Categories"}>Menu Categories</InputLabel>
+                       <Select
+                           labelId="Menu Categories"
+                           id="demo-simple-select"
+                           label={"Menu Categories"}
+                           value={menuName}
+                           onChange={handleChange}
+
+                       >
+                           <MenuItem value={"Breakfast Sandwiches"} className={"menuTitleSelectList"} ><a href={"#breakSandwiches"}>Breakfast Sandwiches</a></MenuItem>
+                           <MenuItem value={"Bagels"} className={"menuTitleSelectList"}><a href={"#bagels"}>Bagels</a></MenuItem>
+                           <MenuItem value={"Cream Cheese"} className={"menuTitleSelectList"}><a href={"#creamcheese"}>Cream Cheese</a></MenuItem>
+                       </Select>
+                   </FormControl>
+                   <Divider
+                       style={{
+                           borderBottomColor: "lightgray",
+                           borderBottomWidth: "1",
+                           marginTop: "30px",
+                           width: "130%"
+                       }}
+                       />
+
+                   <h1 className={"menuTitle"} id={"breakSandwiches"}><a href={"#breakSandwiches"}>Breakfast Sandwiches</a> </h1>
+                   <BreakfastSandwich/>
+                   <h1 className={"menuTitle"} id={"bagels"}><a href={"#bagels"}>Bagels</a></h1>
+                   <Bagels/>
+                   <h1 className={"menuTitle"} id={"creamcheese"}><a href={"#creamcheese"}>Cream Cheese</a></h1>
+                   <CreamCheese/>
                </div>
-                <div className={"addTime"}>
-                    <h5>Add new pick-up times</h5>
-                    <input
-                        type={"text"}
-                        className={"addTime_textbox"}
-                        value={hour}
-                        onChange={(e) => setHour(e.target.value)}
-                        placeholder="Example: 8:00 AM"
-                    />
-                    <button onClick={addNewTime}  className={"timeButton"}><Link to={"/menu"}>Add Time</Link></button>
-                </div>
-            </div>
-           <Meals/>
-        </div>
+               <div className={"setTime"}>
+                   <PickUpTime/>
+               </div>
+
+           </div>
+       </div>
     )
 }
 export default Menu

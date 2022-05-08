@@ -13,6 +13,8 @@ import {
 } from "@material-ui/core";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import CurrencyInput from "react-currency-input-field";
+
 
 function Bagels() {
     const [bagel, setBagel] = useState([])
@@ -78,17 +80,14 @@ function Bagels() {
             name: name,
             price: price,
         });
-        setName("");
+        setName();
         setPrice("");
     }
 
-    const ifEmpty = () => {
-        (name && price) ?  setDisable(false) : setDisable(true);
-    }
 
     useEffect(() => {
         getBagel()
-        ifEmpty()
+
     }, [])
 
     return(
@@ -112,23 +111,29 @@ function Bagels() {
                    className={"addNewItem"}
                    label={"Name"}
                    value={name}
-                   onChange={(e) => setName(e.target.value.trim())}
-                   placeholder={"Name of bagel"}
+                   onChange={(e) => setName(e.target.value.trimStart())}
+                   placeholder={"Add Name"}
                    style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
                />
                <TextField
                    required={true}
-                   type={"text"}
+                   InputProps={{
+                       startAdornment: "$",
+                       inputProps: {min: 1}
+                   }}
+                   type={"number"}
                    variant={"outlined"}
                    label={"Price"}
-                   value={price}
-                   onChange={(e) => setPrice(e.target.value.trim())}
-                   placeholder={"Price of bagel"}
+                   value={Math.abs(parseInt(price))}
+                   onChange={(e) => setPrice(e.target.value.trimStart())}
+                   placeholder={"Add Price"}
                    style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
                />
+
                <button
                    className={"addButton"}
-                   disabled={ifEmpty}
+                   disabled={!price || !name}
+                   style={{ cursor: "pointer"}}
                    onClick={(event) => {
                        addNewBagel(event);
                        addNotify()
@@ -146,7 +151,7 @@ function Bagels() {
                             <div className={"cardInfo"}>
                                 <h5 className={"card_header"}>{data.name}</h5>
                                 {/*<p className={"card_descrip"}>{data.Description}</p>*/}
-                                <p className={"card_cost"}>Cost: {data.price}</p>
+                                <p className={"card_cost"}>Cost: ${data.price}</p>
                                 <Button onClick={() => {
                                     handleClickOpen()
                                     setSelectedItem(id)
@@ -201,18 +206,23 @@ function Bagels() {
                         type={"text"}
                         variant={"outlined"}
                         label={"Name"}
-                        onChange={(e) => setGetName(e.target.value)}
+                        onChange={(e) => setGetName(e.target.value.trimStart())}
                         value={getName}
                         placeholder={getName}
                         style={{margin: "30px", width: "70%",}}
                     />
 
                     <TextField
-                        type={"text"}
+                        type={"number"}
+                        InputProps={{
+                            startAdornment: "$",
+                            inputProps: {min: 1}
+                        }}
+
                         variant={"outlined"}
                         label={"Price"}
-                        onChange={(e) => setGetPrice(e.target.value)}
-                        value={getPrice}
+                        onChange={(e) => setGetPrice(e.target.value.trimStart())}
+                        value={Math.abs(parseInt(getPrice))}
                         placeholder={getPrice}
                         style={{margin: "30px", width: "70%",}}
                     />

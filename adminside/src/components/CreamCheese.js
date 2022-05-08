@@ -126,7 +126,7 @@ function CreamCheese() {
                 {/*    style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}*/}
                 {/*/>*/}
                 <button
-                    disabled={ifEmpty}
+                    disabled={!name}
                     className={"addButton"}
                     onClick={(event) => {
                         addNewCream(event);
