@@ -4,7 +4,7 @@ you need to be in the /client folder
 npm install
 # To run the app
 npm start
-#To build the app
+# To build the app
 npm build
 Runs the app in the development mode.
 Open http://localhost:3000 to view it in the browser.
