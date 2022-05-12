@@ -124,7 +124,7 @@ function Bagels() {
                    type={"number"}
                    variant={"outlined"}
                    label={"Price"}
-                   value={Math.abs(parseInt(price))}
+                   value={Math.abs(parseFloat(price))}
                    onChange={(e) => setPrice(e.target.value.trimStart())}
                    placeholder={"Add Price"}
                    style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
@@ -222,7 +222,7 @@ function Bagels() {
                         variant={"outlined"}
                         label={"Price"}
                         onChange={(e) => setGetPrice(e.target.value.trimStart())}
-                        value={Math.abs(parseInt(getPrice))}
+                        value={Math.abs(parseFloat(getPrice))}
                         placeholder={getPrice}
                         style={{margin: "30px", width: "70%",}}
                     />

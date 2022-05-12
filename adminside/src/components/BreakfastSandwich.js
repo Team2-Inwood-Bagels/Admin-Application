@@ -109,7 +109,7 @@ function BreakfastSandwich() {
                     label={"Name"}
                     value={name}
                     onChange={(e) => setName(e.target.value.trimStart())}
-                    placeholder={"Name of bagel"}
+                    placeholder={"Name of sandwich"}
                     style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
                 />
                 <TextField
@@ -117,11 +117,12 @@ function BreakfastSandwich() {
                     variant={"outlined"}
                     label={"Description"}
                     value={description}
-                    onChange={(e) => setDescription(e.target.value.trim())}
-                    placeholder={"Add Price"}
+                    onChange={(e) => setDescription(e.target.value.trimStart())}
+                    placeholder={"Add Description"}
                     style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
                 />
                 <TextField
+
                     required={true}
                     helperText={"Required Field"}
                     type={"number"}
@@ -131,7 +132,7 @@ function BreakfastSandwich() {
                     }}
                     variant={"outlined"}
                     label={"Price"}
-                    value={Math.abs(parseInt(price))}
+                    value={Math.abs(parseFloat(price))}
                     onChange={(e) => setPrice(e.target.value.trim())}
                     placeholder={"Price of bagel"}
                     style={{marginBottom: "30px", marginTop: "20px", marginRight: "20px", marginLeft: "20px"}}
@@ -229,7 +230,7 @@ function BreakfastSandwich() {
                         type={"number"}
                         variant={"outlined"}
                         label={"Price"}
-                        value={Math.abs(parseInt(getPrice))}
+                        value={Math.abs(parseFloat(getPrice))}
                         onChange={(e) =>{setGetPrice(e.target.value.trimStart())}}
                         placeholder={getPrice}
                         style={{margin: "20px"}}

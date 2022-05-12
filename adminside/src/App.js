@@ -11,9 +11,13 @@ import Menu from "./components/Menu";
 import Orders from "./components/Orders";
 import Inventory from "./components/Inventory";
 import Bagels from "./components/Bagels";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "./firebase";
 
 function App() {
+    const [admin, loading, error] = useAuthState(auth)
   return (
+
     <div className="App">
         <Router>
             <Navbar/>

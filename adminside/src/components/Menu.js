@@ -6,9 +6,6 @@ import Bagels from "./Bagels";
 import {Divider, FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
 import CreamCheese from "./CreamCheese";
 import PickUpTime from "./PickUpTime";
-import {HorizontalSplit} from "@material-ui/icons";
-
-
 
 function Menu(){
     const [menu, setMenu] = useState([])
